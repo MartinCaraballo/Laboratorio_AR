@@ -2,15 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Búsqueda del Tesoro - Sacré Coeur (AR.js + A-Frame)</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <!-- A-Frame -->
-    <script src="https://aframe.io/releases/1.4.1/aframe.min.js"></script>
-    <!-- AR.js for A-Frame -->
-    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js@3.3.2/aframe/build/aframe-ar.js"></script>
-    <!-- Script del juego -->
+    <title>Búsqueda del Tesoro - Sacré Coeur (AR.js)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://aframe.io/releases/1.6.0/aframe.min.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script defer src="script.js"></script>
-
     <style>
         body { margin: 0; overflow: hidden; font-family: sans-serif; }
         #hud {
@@ -36,34 +32,26 @@
 </div>
 
 <a-scene vr-mode-ui="enabled: false" embedded arjs="sourceType: webcam; debugUIEnabled: false;">
-    <!-- Assets -->
     <a-assets>
-        <!-- <a-asset-item id="treasureGLB" src="assets/treasure.glb"></a-asset-item> -->
         <audio id="winSound" src="assets/win.mp3"></audio>
     </a-assets>
 
-    <!-- Marcador 1 -->
     <a-marker preset="hiro" id="marker-hiro">
         <a-box position="0 0.5 0" rotation="0 45 0" scale="0.5 0.5 0.5"
                animation="property: rotation; to: 0 405 0; loop: true; dur: 7000"></a-box>
-        <a-text value="Pista 1: Busca la estatua en el hall"
-                position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
+        <a-text value="Pista 1" position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
     </a-marker>
 
-    <!-- Marcador 2 -->
     <a-marker preset="kanji" id="marker-kanji">
         <a-cylinder position="0 0.5 0" radius="0.3" height="0.8"
                     animation="property: scale; dir: alternate; dur: 1000; to: 1.1 1.1 1.1; loop: true"></a-cylinder>
-        <a-text value="Pista 2: Sube al segundo piso"
-                position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
+        <a-text value="Pista 2" position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
     </a-marker>
 
-    <!-- Marcador 3 -->
     <a-marker type="pattern" url="assets/patterns/pattern-treasure.patt" id="marker-treasure">
         <a-ring position="0 0.01 0" rotation="-90 0 0" radius-inner="0.1" radius-outer="0.3"
                 animation="property: scale; dir: alternate; dur: 800; to: 1.2 1.2 1.2; loop: true"></a-ring>
-        <a-text value="Pista 3: Mira detrás del mural"
-                position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
+        <a-text value="Pista 3" position="-0.8 1 0" rotation="-90 0 0" scale="2 2 2"></a-text>
     </a-marker>
 
     <a-entity camera></a-entity>

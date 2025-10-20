@@ -4,10 +4,7 @@ const markers = {
     'marker-treasure': false
 };
 
-const countEl = document.getElementById('count');
-const finalOverlay = document.getElementById('finalOverlay');
-const replayBtn = document.getElementById('replay');
-const winSound = document.getElementById('winSound');
+let countEl, finalOverlay, replayBtn, winSound;
 
 function updateCount() {
     const found = Object.values(markers).filter(Boolean).length;
@@ -17,18 +14,23 @@ function updateCount() {
 
 function showFinal() {
     if (winSound) {
-        try { winSound.play(); } catch (e) { console.warn('Audio bloqueado por autoplay'); }
+        try { winSound.play(); } catch (e) {}
     }
     finalOverlay.style.display = 'grid';
 }
 
 function resetGame() {
-    for (let k in markers) markers[k] = false;
+    Object.keys(markers).forEach(k => markers[k] = false);
     finalOverlay.style.display = 'none';
     updateCount();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    countEl = document.getElementById('count');
+    finalOverlay = document.getElementById('finalOverlay');
+    replayBtn = document.getElementById('replay');
+    winSound = document.getElementById('winSound');
+
     Object.keys(markers).forEach(id => {
         const el = document.getElementById(id);
         if (!el) return;
@@ -36,15 +38,13 @@ window.addEventListener('DOMContentLoaded', () => {
         el.addEventListener('markerFound', () => {
             if (!markers[id]) {
                 markers[id] = true;
-                console.log('Encontrado:', id);
                 updateCount();
             }
         });
 
-        el.addEventListener('markerLost', () => {
-            console.log('Perdido:', id);
-        });
+        el.addEventListener('markerLost', () => {});
     });
 
-    replayBtn.addEventListener('click', resetGame);
+    if (replayBtn) replayBtn.addEventListener('click', resetGame);
+    updateCount();
 });
